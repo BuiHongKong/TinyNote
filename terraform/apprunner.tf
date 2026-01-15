@@ -8,7 +8,6 @@ resource "aws_apprunner_service" "tinynote" {
 
       image_configuration {
         port = "3000"
-
         runtime_environment_variables = {
           TABLE_NAME = aws_dynamodb_table.notes.name
           AWS_REGION = "ap-southeast-1"
@@ -16,15 +15,16 @@ resource "aws_apprunner_service" "tinynote" {
       }
     }
 
+    # 🔥 ROLE PULL IMAGE
     authentication_configuration {
-      access_role_arn = aws_iam_role.apprunner.arn
+      access_role_arn = aws_iam_role.apprunner_ecr.arn
     }
 
     auto_deployments_enabled = true
   }
 
-  # Đảm bảo IAM role đã được tạo xong
-  depends_on = [
-    aws_iam_role_policy.apprunner_policy
-  ]
+  # 🔥 ROLE CHẠY APP
+  instance_configuration {
+    instance_role_arn = aws_iam_role.apprunner_runtime.arn
+  }
 }
