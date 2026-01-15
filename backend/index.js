@@ -1,7 +1,7 @@
 const express = require("express");
 const path = require("path");
 const { DynamoDBClient } = require("@aws-sdk/client-dynamodb");
-const { DynamoDBDocumentClient, ScanCommand, PutCommand } = require("@aws-sdk/lib-dynamodb");
+const { DynamoDBDocumentClient, ScanCommand, PutCommand, UpdateCommand, DeleteCommand } = require("@aws-sdk/lib-dynamodb");
 const { randomUUID } = require("crypto");
 
 const app = express();
@@ -33,6 +33,30 @@ app.post("/notes", async (req, res) => {
         text: req.body.text,
         createdAt: Date.now()
       }
+    })
+  );
+  res.json({ ok: true });
+});
+
+app.put("/notes/:id", async (req, res) => {
+  await db.send(
+    new UpdateCommand({
+      TableName: TABLE,
+      Key: { id: req.params.id },
+      UpdateExpression: "set text = :text",
+      ExpressionAttributeValues: {
+        ":text": req.body.text
+      }
+    })
+  );
+  res.json({ ok: true });
+});
+
+app.delete("/notes/:id", async (req, res) => {
+  await db.send(
+    new DeleteCommand({
+      TableName: TABLE,
+      Key: { id: req.params.id }
     })
   );
   res.json({ ok: true });

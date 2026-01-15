@@ -54,7 +54,9 @@ resource "aws_iam_role_policy" "apprunner_runtime_policy" {
       Effect = "Allow"
       Action = [
         "dynamodb:Scan",
-        "dynamodb:PutItem"
+        "dynamodb:PutItem",
+        "dynamodb:UpdateItem",
+        "dynamodb:DeleteItem"
       ]
       Resource = aws_dynamodb_table.notes.arn
     }]

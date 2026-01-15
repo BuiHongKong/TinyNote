@@ -114,3 +114,71 @@ button:active {
   color: #1f2a44;
   line-height: 1.4;
 }
+
+.note-text {
+  margin-bottom: 8px;
+  word-wrap: break-word;
+}
+
+.note-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.note-actions button {
+  padding: 6px 12px;
+  font-size: 0.875rem;
+  border-radius: 6px;
+}
+
+.edit-btn {
+  background: #e3def3;
+  border-color: #d0c8e8;
+  color: #1f2a44;
+}
+
+.edit-btn:hover {
+  background: #d0c8e8;
+}
+
+.delete-btn {
+  background: #ffd6d6;
+  border-color: #ffb3b3;
+  color: #cc0000;
+}
+
+.delete-btn:hover {
+  background: #ffb3b3;
+}
+
+.save-btn {
+  background: #d4edda;
+  border-color: #c3e6cb;
+  color: #155724;
+}
+
+.save-btn:hover {
+  background: #c3e6cb;
+}
+
+.cancel-btn {
+  background: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+}
+
+.cancel-btn:hover {
+  background: #f5c6cb;
+}
+
+.note-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-edit input {
+  width: 100%;
+  margin: 0;
+}
