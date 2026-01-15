@@ -38,8 +38,8 @@ app.post("/notes", async (req, res) => {
   res.json({ ok: true });
 });
 
-// React/Vite fallback
-app.get("*", (req, res) => {
+// React/Vite fallback - match tất cả GET requests chưa được định nghĩa
+app.get(/.*/, (req, res) => {
   res.sendFile(
     path.join(__dirname, "../frontend/dist/index.html")
   );
