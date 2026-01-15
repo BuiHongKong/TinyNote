@@ -31,11 +31,17 @@ resource "aws_iam_role_policy" "apprunner_policy" {
         Action = [
           "ecr:BatchCheckLayerAvailability",
           "ecr:GetDownloadUrlForLayer",
-          "ecr:BatchGetImage",
+          "ecr:BatchGetImage"
+        ]
+        Resource = "${aws_ecr_repository.tinynote.arn}"
+      },
+      {
+        Effect = "Allow"
+        Action = [
           "ecr:DescribeRepositories",
           "ecr:DescribeImages"
         ]
-        Resource = "${aws_ecr_repository.tinynote.arn}"
+        Resource = "*"
       },
       {
         Effect = "Allow"
