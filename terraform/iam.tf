@@ -22,11 +22,20 @@ resource "aws_iam_role_policy" "apprunner_policy" {
       {
         Effect = "Allow"
         Action = [
-          "ecr:GetAuthorizationToken",
-          "ecr:BatchGetImage",
-          "ecr:GetDownloadUrlForLayer"
+          "ecr:GetAuthorizationToken"
         ]
         Resource = "*"
+      },
+      {
+        Effect = "Allow"
+        Action = [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:BatchGetImage",
+          "ecr:DescribeRepositories",
+          "ecr:DescribeImages"
+        ]
+        Resource = "${aws_ecr_repository.tinynote.arn}"
       },
       {
         Effect = "Allow"
